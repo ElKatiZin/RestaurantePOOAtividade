@@ -32,4 +32,13 @@ public class Mesa {
     public void setReservado(boolean reservado) {
         this.reservado = reservado;
     }
+
+    @Override
+    public String toString() {
+        return "Mesa{" +
+                "numeracao='" + numeracao + '\'' +
+                ", capacidade=" + capacidade +
+                ", reservado=" + reservado +
+                '}';
+    }
 }

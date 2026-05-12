@@ -54,4 +54,15 @@ public class Reserva {
     public void setAtiva(boolean ativa) {
         this.ativa = ativa;
     }
+
+    @Override
+    public String toString() {
+        return "Reserva{" +
+                "cliente=" + cliente +
+                ", mesa=" + mesa +
+                ", dataHora=" + dataHora +
+                ", quantidadePessoas=" + quantidadePessoas +
+                ", ativa=" + ativa +
+                '}';
+    }
 }
