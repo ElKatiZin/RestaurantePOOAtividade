@@ -1,5 +1,7 @@
+import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Main {
@@ -100,11 +102,12 @@ public class Main {
                 String[] cadClienteMenu = new String[3];
                 String[] cadClienteInst = new String[3];
                 cadClienteInst[0] = "Digite o nome do cliente";
-                cadClienteInst[1] = "Digite a Data de nascimento : Ano-Mês-Dia";
+                cadClienteInst[1] = "Digite a Data de nascimento : Dia/Mês/Ano";
                 cadClienteInst[2] = "Digite o número de telefone do cliente";
                 for (int i = 0; i < 3; i++) {
-                    String cadClienteInput = s.nextLine();
                     System.out.println(cadClienteInst[i]);
+                    String cadClienteInput = s.nextLine();
+
                     if (cadClienteInput.equalsIgnoreCase("x")) {
                         System.out.println("Cancelado");
                         cadCliente = false;
@@ -118,7 +121,8 @@ public class Main {
                 if (cheio){
                     String nome = cadClienteMenu[0];
                     String nasc = cadClienteMenu[1];
-                    LocalDate dNasc = LocalDate.parse(nasc);
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate dNasc = LocalDate.parse(nasc, format);
                     String telefone = cadClienteMenu[2];
                     Cliente cliente = new Cliente(nome, dNasc, telefone);
                     restaurante.cadastrarCliente(cliente);
@@ -179,7 +183,8 @@ public class Main {
                     Funcao funcao = Funcao.valueOf(funcaoInput.trim().toUpperCase());
                     String nome = cadFuncionarioMenu[1];
                     String nasc = cadFuncionarioMenu[2];
-                    LocalDate dNasc = LocalDate.parse(nasc);
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate dNasc = LocalDate.parse(nasc, format);
                     String telefone = cadFuncionarioMenu[3];
                     String cpf = cadFuncionarioMenu[4];
                     String salarioInput = cadFuncionarioMenu[5];
@@ -266,7 +271,7 @@ public class Main {
                 String[] cadReservaInst = new String[4];
                 cadReservaInst[0] = "Digite o numero do Cliente";
                 cadReservaInst[1] = "Digite o número da mesa";
-                cadReservaInst[2] = "Digite a Data e a Hora da reserva : Ano-Mês-DiaThora:minuto:segundo";
+                cadReservaInst[2] = "Digite a Data e a Hora da reserva : Dia/Mês/Ano Hora:Minuto:Segundo";
                 cadReservaInst[3] = "Digite o número de pessoas da reserva";
 
 
@@ -288,7 +293,8 @@ public class Main {
                     String clienteTelefone = cadReservaMenu[0];
                     String mesa = cadReservaMenu[1];
                     String dataHoraInput = cadReservaMenu[2];
-                    LocalDateTime dataHora = LocalDateTime.parse(dataHoraInput);
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                    LocalDateTime dataHora = LocalDateTime.parse(dataHoraInput, format);
                     String qtdPessoasInput = cadReservaMenu[3];
                     int qtdPessoas = Integer.parseInt(qtdPessoasInput);
                     restaurante.criarReservas(clienteTelefone, mesa, dataHora, qtdPessoas);

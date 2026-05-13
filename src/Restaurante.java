@@ -39,7 +39,9 @@ public class Restaurante {
                 break;
             }
         }
-        if (qtdPessoas > mesa1.getCapacidade()){
+        if (mesa1.isReservado()){
+            System.out.println("Mesa já rservada! Cancele a reserva ou tente novamente com outra mesa");
+        } else if (qtdPessoas > mesa1.getCapacidade()){
             System.out.println("Essa mesa só comporta "+mesa1.getCapacidade()+", tente novamente com outra mesa");
         }else {
 
@@ -112,6 +114,7 @@ public class Restaurante {
             }
         }
         reservas.remove(r);
+        m.setReservado(false);
         System.out.println("Reserva cancelada");
     }
      public void removeFuncionario(String funcionarioid){
